@@ -1,67 +1,65 @@
-# Bitcoin Price Tracker
-Este é um script Python que monitora o preço do Bitcoin em tempo real e envia alertas por e-mail quando o valor cai abaixo de um limite definido pelo usuário. O projeto utiliza a API da CoinGecko para obter os preços e a biblioteca smtplib para o envio de e-mails.
+# Rastreador de Preços do Bitcoin
+
+Um script Python que monitora o preço do Bitcoin em tempo real e envia alertas por e-mail quando o valor cai abaixo de um limite definido pelo usuário.
 
 ## Funcionalidades
-Rastreamento do preço do Bitcoin: Obtém o preço do Bitcoin em BRL usando a API da CoinGecko.
-Envio de alertas por e-mail: Envia um e-mail de alerta para um ou mais destinatários quando o preço cai abaixo de um limite especificado.
-Automatização: Executa o rastreamento a cada 10 minutos automaticamente.
-Requisitos
-Python 3.7+
-Bibliotecas Python:
-requests
-smtplib (parte da biblioteca padrão do Python)
-email (parte da biblioteca padrão do Python)
-decouple
-schedule
-Conta de e-mail no Gmail para o envio dos alertas
-Instalação
-Clone este repositório para o seu ambiente local.
 
-## bash
-Copiar código
-git clone https://github.com/seu-usuario/bitcoin-price-tracker.git
-cd bitcoin-price-tracker
-Crie e ative um ambiente virtual (opcional, mas recomendado).
+- Obtém o preço atual do Bitcoin em BRL usando a API da CoinGecko.
+- Envia um e-mail de alerta quando o preço do Bitcoin cai abaixo de um limite definido pelo usuário.
+- Automatiza o rastreamento e envio de alertas a cada 10 minutos.
 
-## bash
-Copiar código
-python3 -m venv venv
-source venv/bin/activate  # No Windows: venv\Scripts\activate
-Instale as dependências necessárias.
+## Tecnologias Utilizadas
 
-##bash
-Copiar código
-pip install -r requirements.txt
-Crie um arquivo .env na raiz do projeto e adicione suas credenciais de e-mail:
+- Python 3.7+
+- `requests` (para fazer requisições HTTP)
+- `smtplib` (para envio de e-mails)
+- `email` (para criação de e-mails em formato HTML)
+- `decouple` (para gerenciar variáveis de ambiente)
+- `schedule` (para agendamento de tarefas)
 
-graphql
-Copiar código
-EMAIL_USER=seu_email@gmail.com
-EMAIL_PASS=sua_senha_de_app
-RECIPIENT_EMAIL=email_destinatario1@gmail.com,email_destinatario2@gmail.com
-Nota: Por questões de segurança, utilize uma senha de aplicativo gerada no Gmail em vez da sua senha principal.
+## Como Usar
 
-**Uso**
-Execute o script principal:
+1. **Instalação das Dependências:**
+   - Certifique-se de ter o Python 3.7+ instalado.
+   - Instale as dependências necessárias:
 
-## bash
-Copiar código
-python tracker.py
-Insira o valor limite para o alerta do Bitcoin quando solicitado.
+     ```sh
+     pip install requests python-decouple schedule
+     ```
 
-O script começará a rastrear o preço do Bitcoin e enviará e-mails de alerta conforme necessário.
+2. **Configuração do Ambiente:**
+   - Crie um arquivo `.env` na raiz do projeto e adicione suas credenciais de e-mail:
 
-Personalização
-Intervalo de tempo: O script está configurado para verificar o preço a cada 10 minutos. Esse intervalo pode ser ajustado na linha onde o agendamento é definido:
+     ```env
+     EMAIL_USER=seu_email@gmail.com
+     EMAIL_PASS=sua_senha_de_app
+     RECIPIENT_EMAIL=email_destinatario1@gmail.com,email_destinatario2@gmail.com
+     ```
 
-python
-Copiar código
-schedule.every(10).minutes.do(check_price, threshold)
-Destinatários do e-mail: Você pode adicionar ou remover destinatários editando a variável RECIPIENT_EMAIL no arquivo .env.
+   > **Nota:** Utilize uma senha de aplicativo gerada no Gmail em vez da sua senha principal por questões de segurança.
 
+3. **Execução:**
+   - Clone este repositório: `git clone https://github.com/seu_usuario/bitcoin-price-tracker.git`
+   - Navegue até o diretório do projeto: `cd bitcoin-price-tracker`
+   - Execute o script Python:
+
+     ```sh
+     python tracker.py
+     ```
+
+4. **Uso:**
+   - Insira o valor limite para o alerta do Bitcoin quando solicitado.
+   - O script começará a rastrear o preço do Bitcoin e enviará e-mails de alerta conforme necessário.
+
+## Personalização
+
+- **Intervalo de Tempo:** O script está configurado para verificar o preço a cada 10 minutos. Para ajustar o intervalo, edite a linha onde o agendamento é definido:
+
+  ```python
+  schedule.every(10).minutes.do(check_price, threshold)
+Destinatários do E-mail: Adicione ou remova destinatários editando a variável RECIPIENT_EMAIL no arquivo .env.
 Contribuição
 Sinta-se à vontade para fazer um fork do projeto, abrir issues ou enviar pull requests.
 
-**Licença**
+Licença
 Este projeto está licenciado sob a MIT License.
-
